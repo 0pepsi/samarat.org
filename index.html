@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منقية سمارات - حامد بن سعود</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/cSdKsw15/Nj0-U6b-Tk-400x400.jpg">
+    <link rel="icon" type="image/x-icon" href="Nj0U6bTk_400x400.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
         .header-inner {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 28px 70px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -61,25 +61,25 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
 
         .logo-main {
-            height: 68px;
+            height: 58px;
             width: auto;
         }
 
         .logo-secondary {
-            height: 54px;
+            height: 48px;
             width: auto;
             opacity: 0.75;
             border-right: 1px solid rgba(122, 111, 101, 0.25);
-            padding-right: 20px;
+            padding-right: 16px;
         }
 
         .nav {
             display: flex;
-            gap: 50px;
+            gap: 42px;
             align-items: center;
             list-style: none;
         }
@@ -91,7 +91,6 @@
             font-weight: 400;
             letter-spacing: 0.01em;
             transition: color 0.3s ease;
-            position: relative;
         }
 
         .nav a:hover {
@@ -121,11 +120,22 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background-image: url('https://i.ibb.co/GQxzBBGv/bg.jpg');
+            background-image: url('e9fb5796-522a-439e-8af9-c49fc2ea9148.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            margin-top: 125px;
+            margin-top: 99px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('e9fb5796-522a-439e-8af9-c49fc2ea9148.png');
+            background-size: cover;
+            background-position: center;
+            filter: saturate(0.85) contrast(0.95);
+            z-index: 0;
         }
 
         .hero::before {
@@ -133,23 +143,24 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(
-                115deg,
-                rgba(248, 244, 240, 0.88) 0%,
-                rgba(227, 213, 202, 0.82) 45%,
-                rgba(213, 189, 175, 0.75) 100%
+                to left,
+                rgba(245, 235, 220, 0.92),
+                rgba(245, 235, 220, 0.75),
+                rgba(245, 235, 220, 0.55)
             );
+            z-index: 1;
         }
 
         .hero-badge {
             position: absolute;
-            bottom: 90px;
-            left: 90px;
+            bottom: 80px;
+            left: 80px;
             z-index: 1;
-            opacity: 0.06;
+            opacity: 0.05;
         }
 
         .hero-badge img {
-            height: 320px;
+            height: 280px;
             width: auto;
         }
 
@@ -158,45 +169,45 @@
             z-index: 2;
             max-width: 1600px;
             margin: 0 auto;
-            padding: 140px 70px 160px;
+            padding: 100px 50px;
             width: 100%;
         }
 
         .hero-box {
-            max-width: 920px;
+            max-width: 640px;
         }
 
         .hero-heading {
-            font-size: clamp(4.5rem, 9vw, 9rem);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
             font-weight: 600;
             color: var(--matte-brown);
-            margin-bottom: 50px;
-            line-height: 0.95;
+            margin-bottom: 32px;
+            line-height: 1.2;
             letter-spacing: -0.015em;
         }
 
         .hero-text {
-            font-size: clamp(1.35rem, 2.4vw, 1.95rem);
+            font-size: clamp(1rem, 1.6vw, 1.25rem);
             color: var(--text-secondary);
-            margin-bottom: 70px;
-            line-height: 1.75;
+            margin-bottom: 48px;
+            line-height: 1.8;
             font-weight: 400;
-            max-width: 760px;
+            max-width: 560px;
         }
 
         .hero-action {
             display: inline-block;
             background: var(--matte-brown);
             color: var(--warm-beige);
-            padding: 18px 50px;
-            font-size: 15px;
+            padding: 14px 28px;
+            font-size: 0.95rem;
             font-weight: 500;
             letter-spacing: 0.02em;
             border-radius: 6px;
             text-decoration: none;
             cursor: not-allowed;
             opacity: 0.92;
-            margin-bottom: 110px;
+            margin-bottom: 80px;
             transition: background 0.3s ease;
         }
 
@@ -206,14 +217,14 @@
 
         /* Countdown */
         .timer-section {
-            margin-top: 110px;
+            margin-top: 80px;
         }
 
         .timer-title {
             color: var(--text-tertiary);
-            font-size: 13px;
+            font-size: 0.8rem;
             font-weight: 500;
-            margin-bottom: 40px;
+            margin-bottom: 28px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
@@ -221,44 +232,44 @@
         .timer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 750px;
+            gap: 18px;
+            max-width: 560px;
         }
 
         .timer-card {
-            background: rgba(255, 255, 255, 0.45);
-            border: 1px solid rgba(122, 111, 101, 0.18);
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(122, 111, 101, 0.2);
             border-radius: 8px;
-            padding: 38px 24px;
+            padding: 24px 16px;
             text-align: center;
             transition: all 0.3s ease;
         }
 
         .timer-card:hover {
-            background: rgba(255, 255, 255, 0.6);
-            border-color: rgba(122, 111, 101, 0.28);
+            background: rgba(255, 255, 255, 0.65);
+            border-color: rgba(122, 111, 101, 0.3);
         }
 
         .timer-num {
-            font-size: 3.8rem;
+            font-size: 2.4rem;
             font-weight: 500;
             color: var(--deep-brown);
             display: block;
             line-height: 1;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             letter-spacing: -0.02em;
         }
 
         .timer-label {
-            font-size: 13px;
-            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
             font-weight: 400;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
         }
 
         /* Soon Section */
         .soon {
-            padding: 180px 70px;
+            padding: 120px 50px;
             text-align: center;
             background: var(--warm-beige);
             position: relative;
@@ -277,7 +288,7 @@
         }
 
         .soon h2 {
-            font-size: clamp(3.5rem, 6vw, 6.5rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 500;
             color: var(--matte-brown);
             margin: 0;
@@ -288,29 +299,35 @@
         .footer {
             background: var(--deep-brown);
             color: rgba(245, 235, 224, 0.85);
-            padding: 55px 70px;
+            padding: 45px 50px;
             text-align: center;
         }
 
         .footer p {
-            font-size: 14px;
+            font-size: 0.9rem;
             font-weight: 400;
             margin: 0;
             letter-spacing: 0.01em;
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .header-inner,
-            .hero-inner,
-            .soon,
-            .footer {
-                padding-left: 50px;
-                padding-right: 50px;
+        /* Tablet */
+        @media (max-width: 1199px) {
+            .hero-heading {
+                font-size: clamp(2rem, 3.8vw, 3.2rem);
+            }
+
+            .hero::before {
+                background: linear-gradient(
+                    to left,
+                    rgba(245, 235, 220, 0.94),
+                    rgba(245, 235, 220, 0.82),
+                    rgba(245, 235, 220, 0.65)
+                );
             }
 
             .timer-grid {
-                gap: 24px;
+                max-width: 500px;
+                gap: 16px;
             }
         }
 
@@ -321,52 +338,46 @@
 
             .nav {
                 position: fixed;
-                top: 125px;
+                top: 99px;
                 right: -100%;
                 background: rgba(248, 244, 240, 0.98);
                 backdrop-filter: blur(16px);
-                width: 320px;
-                height: calc(100vh - 125px);
+                width: 280px;
+                height: calc(100vh - 99px);
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 45px;
+                padding: 40px;
                 border-left: 1px solid rgba(122, 111, 101, 0.15);
                 transition: right 0.4s ease;
-                gap: 32px;
+                gap: 28px;
             }
 
             .nav.open {
                 right: 0;
             }
 
-            .logo-secondary {
-                height: 48px;
-            }
-
             .hero-badge {
-                bottom: 70px;
-                left: 70px;
-                opacity: 0.05;
+                opacity: 0.04;
             }
 
             .hero-badge img {
-                height: 260px;
+                height: 240px;
             }
 
             .timer-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-                max-width: 500px;
+                gap: 14px;
             }
         }
 
-        @media (max-width: 600px) {
+        /* Mobile */
+        @media (max-width: 767px) {
             .header-inner {
-                padding: 22px 30px;
+                padding: 16px 24px;
             }
 
             .logo-main {
-                height: 56px;
+                height: 50px;
             }
 
             .logo-secondary {
@@ -374,59 +385,111 @@
             }
 
             .hero {
-                margin-top: 101px;
+                margin-top: 83px;
+                background-attachment: scroll;
+            }
+
+            .hero::after {
+                filter: saturate(0.75) contrast(0.9) blur(1px);
+            }
+
+            .hero::before {
+                background: linear-gradient(
+                    135deg,
+                    rgba(245, 235, 220, 0.95),
+                    rgba(245, 235, 220, 0.88)
+                );
             }
 
             .hero-inner {
-                padding: 100px 30px 120px;
+                padding: 80px 24px;
+            }
+
+            .hero-box {
+                max-width: 90%;
+                text-align: center;
+                margin: 0 auto;
             }
 
             .hero-heading {
-                margin-bottom: 40px;
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+                margin-bottom: 28px;
             }
 
             .hero-text {
+                font-size: clamp(0.95rem, 4vw, 1.1rem);
+                margin-bottom: 40px;
+                max-width: 100%;
+            }
+
+            .hero-action {
+                padding: 13px 26px;
+                font-size: 0.9rem;
                 margin-bottom: 60px;
             }
 
             .hero-badge {
-                bottom: 50px;
-                left: 30px;
-                opacity: 0.04;
+                bottom: 40px;
+                left: 24px;
+                opacity: 0.03;
             }
 
             .hero-badge img {
-                height: 200px;
+                height: 180px;
             }
 
-            .hero-action {
-                padding: 16px 42px;
-                font-size: 14px;
-                margin-bottom: 90px;
+            .timer-section {
+                margin-top: 60px;
+                text-align: center;
+            }
+
+            .timer-title {
+                font-size: 0.75rem;
+                margin-bottom: 24px;
             }
 
             .timer-grid {
-                gap: 16px;
+                max-width: 100%;
+                gap: 12px;
             }
 
             .timer-card {
-                padding: 32px 20px;
+                padding: 20px 12px;
             }
 
             .timer-num {
-                font-size: 3.2rem;
+                font-size: 2rem;
             }
 
             .timer-label {
-                font-size: 12px;
+                font-size: 0.8rem;
             }
 
             .soon {
-                padding: 140px 30px;
+                padding: 100px 24px;
             }
 
             .footer {
-                padding: 45px 30px;
+                padding: 40px 24px;
+            }
+
+            .footer p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .hero-heading {
+                font-size: clamp(1.6rem, 7vw, 2.2rem);
+            }
+
+            .timer-num {
+                font-size: 1.8rem;
+            }
+
+            .timer-label {
+                font-size: 0.75rem;
             }
         }
 
@@ -434,7 +497,7 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(16px);
             }
             to {
                 opacity: 1;
@@ -443,24 +506,24 @@
         }
 
         .hero-box > * {
-            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
         }
 
         .hero-heading {
-            animation-delay: 0.15s;
+            animation-delay: 0.1s;
         }
 
         .hero-text {
-            animation-delay: 0.35s;
+            animation-delay: 0.25s;
         }
 
         .hero-action {
-            animation-delay: 0.55s;
+            animation-delay: 0.4s;
         }
 
         .timer-section {
-            animation-delay: 0.75s;
+            animation-delay: 0.55s;
         }
     </style>
 </head>
@@ -469,7 +532,7 @@
     <header class="header">
         <div class="header-inner">
             <div class="brand">
-                <img src="https://i.ibb.co/cSdKsw15/Nj0-U6b-Tk-400x400.jpg" alt="منقية سمارات" class="logo-main">
+                <img src="Nj0U6bTk_400x400.ico" alt="منقية سمارات" class="logo-main">
                 <img src="3cedc758-ea35-4a60-ba22-7a9238523ad2.png" alt="شعار" class="logo-secondary">
             </div>
 
@@ -490,7 +553,7 @@
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-badge">
-            <img src="https://i.ibb.co/GQxzBBGv/bg.jpg" alt="شعار">
+            <img src="3cedc758-ea35-4a60-ba22-7a9238523ad2.png" alt="شعار">
         </div>
 
         <div class="hero-inner">
