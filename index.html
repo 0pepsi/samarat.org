@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منقية سمارات - حامد بن سعود</title>
+    <link rel="icon" type="image/x-icon" href="Nj0U6bTk_400x400.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sand-light: #f5ebe0;
+            --sand-medium: #e3d5ca;
+            --sand-dark: #d5bdaf;
+            --desert-brown: #a67c52;
+            --matte-brown: #6b5846;
+            --deep-brown: #4a3f35;
+            --warm-beige: #f8f4f0;
+            --text-primary: #4a3f35;
+            --text-secondary: #7a6f65;
+            --text-tertiary: #9a8f85;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', -apple-system, sans-serif;
+            background: var(--warm-beige);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(248, 244, 240, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(166, 124, 82, 0.12);
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 28px 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-main {
+            height: 68px;
+            width: auto;
+        }
+
+        .logo-secondary {
+            height: 54px;
+            width: auto;
+            opacity: 0.75;
+            border-right: 1px solid rgba(122, 111, 101, 0.25);
+            padding-right: 20px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--matte-brown);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: url('e9fb5796-522a-439e-8af9-c49fc2ea9148.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 125px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                115deg,
+                rgba(248, 244, 240, 0.88) 0%,
+                rgba(227, 213, 202, 0.82) 45%,
+                rgba(213, 189, 175, 0.75) 100%
+            );
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: 90px;
+            left: 90px;
+            z-index: 1;
+            opacity: 0.06;
+        }
+
+        .hero-badge img {
+            height: 320px;
+            width: auto;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 140px 70px 160px;
+            width: 100%;
+        }
+
+        .hero-box {
+            max-width: 920px;
+        }
+
+        .hero-heading {
+            font-size: clamp(4.5rem, 9vw, 9rem);
+            font-weight: 600;
+            color: var(--matte-brown);
+            margin-bottom: 50px;
+            line-height: 0.95;
+            letter-spacing: -0.015em;
+        }
+
+        .hero-text {
+            font-size: clamp(1.35rem, 2.4vw, 1.95rem);
+            color: var(--text-secondary);
+            margin-bottom: 70px;
+            line-height: 1.75;
+            font-weight: 400;
+            max-width: 760px;
+        }
+
+        .hero-action {
+            display: inline-block;
+            background: var(--matte-brown);
+            color: var(--warm-beige);
+            padding: 18px 50px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: not-allowed;
+            opacity: 0.92;
+            margin-bottom: 110px;
+            transition: background 0.3s ease;
+        }
+
+        .hero-action:hover {
+            background: #5c4f42;
+        }
+
+        /* Countdown */
+        .timer-section {
+            margin-top: 110px;
+        }
+
+        .timer-title {
+            color: var(--text-tertiary);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 750px;
+        }
+
+        .timer-card {
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(122, 111, 101, 0.18);
+            border-radius: 8px;
+            padding: 38px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .timer-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(122, 111, 101, 0.28);
+        }
+
+        .timer-num {
+            font-size: 3.8rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            display: block;
+            line-height: 1;
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .timer-label {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+
+        /* Soon Section */
+        .soon {
+            padding: 180px 70px;
+            text-align: center;
+            background: var(--warm-beige);
+            position: relative;
+        }
+
+        .soon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(122, 111, 101, 0.2), transparent);
+        }
+
+        .soon h2 {
+            font-size: clamp(3.5rem, 6vw, 6.5rem);
+            font-weight: 500;
+            color: var(--matte-brown);
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-brown);
+            color: rgba(245, 235, 224, 0.85);
+            padding: 55px 70px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0;
+            letter-spacing: 0.01em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .header-inner,
+            .hero-inner,
+            .soon,
+            .footer {
+                padding-left: 50px;
+                padding-right: 50px;
+            }
+
+            .timer-grid {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav {
+                position: fixed;
+                top: 125px;
+                right: -100%;
+                background: rgba(248, 244, 240, 0.98);
+                backdrop-filter: blur(16px);
+                width: 320px;
+                height: calc(100vh - 125px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 45px;
+                border-left: 1px solid rgba(122, 111, 101, 0.15);
+                transition: right 0.4s ease;
+                gap: 32px;
+            }
+
+            .nav.open {
+                right: 0;
+            }
+
+            .logo-secondary {
+                height: 48px;
+            }
+
+            .hero-badge {
+                bottom: 70px;
+                left: 70px;
+                opacity: 0.05;
+            }
+
+            .hero-badge img {
+                height: 260px;
+            }
+
+            .timer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-inner {
+                padding: 22px 30px;
+            }
+
+            .logo-main {
+                height: 56px;
+            }
+
+            .logo-secondary {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 101px;
+            }
+
+            .hero-inner {
+                padding: 100px 30px 120px;
+            }
+
+            .hero-heading {
+                margin-bottom: 40px;
+            }
+
+            .hero-text {
+                margin-bottom: 60px;
+            }
+
+            .hero-badge {
+                bottom: 50px;
+                left: 30px;
+                opacity: 0.04;
+            }
+
+            .hero-badge img {
+                height: 200px;
+            }
+
+            .hero-action {
+                padding: 16px 42px;
+                font-size: 14px;
+                margin-bottom: 90px;
+            }
+
+            .timer-grid {
+                gap: 16px;
+            }
+
+            .timer-card {
+                padding: 32px 20px;
+            }
+
+            .timer-num {
+                font-size: 3.2rem;
+            }
+
+            .timer-label {
+                font-size: 12px;
+            }
+
+            .soon {
+                padding: 140px 30px;
+            }
+
+            .footer {
+                padding: 45px 30px;
+            }
+        }
+
+        /* Refined Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-box > * {
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .hero-heading {
+            animation-delay: 0.15s;
+        }
+
+        .hero-text {
+            animation-delay: 0.35s;
+        }
+
+        .hero-action {
+            animation-delay: 0.55s;
+        }
+
+        .timer-section {
+            animation-delay: 0.75s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="brand">
+                <img src="Nj0U6bTk_400x400.ico" alt="منقية سمارات" class="logo-main">
+                <img src="3cedc758-ea35-4a60-ba22-7a9238523ad2.png" alt="شعار" class="logo-secondary">
+            </div>
+
+            <button class="menu-btn" onclick="toggleNav()" aria-label="القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav" id="mainNav">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">عن سمارات</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-badge">
+            <img src="3cedc758-ea35-4a60-ba22-7a9238523ad2.png" alt="شعار">
+        </div>
+
+        <div class="hero-inner">
+            <div class="hero-box">
+                <h1 class="hero-heading">منقية سمارات</h1>
+                
+                <p class="hero-text">بإشراف حامد بن سعود<br>منصة توثيقية تجمع تاريخ ومشاركات منقية سمارات</p>
+                
+                <a href="#" class="hero-action">تحت التطوير</a>
+
+                <!-- Countdown -->
+                <div class="timer-section">
+                    <div class="timer-title">العد التنازلي للإطلاق</div>
+                    <div class="timer-grid">
+                        <div class="timer-card">
+                            <span class="timer-num" id="days">00</span>
+                            <span class="timer-label">يوم</span>
+                        </div>
+                        <div class="timer-card">
+                            <span class="timer-num" id="hours">00</span>
+                            <span class="timer-label">ساعة</span>
+                        </div>
+                        <div class="timer-card">
+                            <span class="timer-num" id="minutes">00</span>
+                            <span class="timer-label">دقيقة</span>
+                        </div>
+                        <div class="timer-card">
+                            <span class="timer-num" id="seconds">00</span>
+                            <span class="timer-label">ثانية</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soon -->
+    <section class="soon">
+        <h2>قريبًا</h2>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 منقية سمارات - حامد بن سعود. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        const LAUNCH_DAYS = 7;
+
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + LAUNCH_DAYS);
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff < 0) {
+                ['days', 'hours', 'minutes', 'seconds'].forEach(id => {
+                    document.getElementById(id).textContent = '00';
+                });
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // Mobile Navigation
+        function toggleNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+        }
+
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            const nav = document.getElementById('mainNav');
+            const btn = document.querySelector('.menu-btn');
+            
+            if (!nav.contains(e.target) && !btn.contains(e.target)) {
+                nav.classList.remove('open');
+            }
+        });
+
+        // Smooth scroll & close menu
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('mainNav').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
