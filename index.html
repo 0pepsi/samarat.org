@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منقية سمارات</title>
+    <title>منقية سمارات - الإبل الشعلاء</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,12 +17,15 @@
 
         :root {
             --sand-light: #f7f2ed;
-            --sand-warm: #e8ddd0;
+            --sand-warm: #ebe2d6;
+            --sand-dark: #d4c4b0;
             --desert-gold: #c9a961;
+            --gold-dark: #a88a4d;
             --heritage-brown: #5d4e3d;
             --deep-earth: #3d3327;
             --text-primary: #2d2418;
             --text-light: #6b5d4f;
+            --dust-overlay: rgba(212, 196, 176, 0.15);
         }
 
         body {
@@ -33,37 +36,126 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Dust texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--dust-overlay) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, var(--dust-overlay) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, var(--dust-overlay) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
         /* Header */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(247, 242, 237, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+            background: rgba(247, 242, 237, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 169, 97, 0.25);
             z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(235, 226, 214, 0.98);
+            box-shadow: 0 4px 24px rgba(45, 36, 24, 0.06);
         }
 
         .header-inner {
             max-width: 1800px;
             margin: 0 auto;
-            padding: 24px 60px;
+            padding: 20px 60px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
         .logo {
-            height: 80px;
+            height: 70px;
             width: auto;
-            filter: drop-shadow(0 2px 8px rgba(45, 36, 24, 0.1));
+            filter: drop-shadow(0 2px 8px rgba(45, 36, 24, 0.08));
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled .logo {
+            height: 60px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .brand-name {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--heritage-brown);
+            line-height: 1;
+        }
+
+        .brand-tagline {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--heritage-brown);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--desert-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-dark);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Hero */
         .hero {
             position: relative;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -71,258 +163,610 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            margin-top: 128px;
+            margin-top: 110px;
+            overflow: hidden;
         }
 
         .hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url('https://i.ibb.co/GQxzBBGv/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: saturate(0.7) contrast(0.9);
-            z-index: 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
             background: radial-gradient(
                 ellipse at center,
-                rgba(247, 242, 237, 0.75),
-                rgba(232, 221, 208, 0.85),
-                rgba(201, 169, 97, 0.5)
+                rgba(247, 242, 237, 0.7),
+                rgba(235, 226, 214, 0.85),
+                rgba(212, 196, 176, 0.75)
             );
             z-index: 1;
-        }
-
-        .hero-ornament {
-            position: absolute;
-            bottom: 100px;
-            left: 100px;
-            z-index: 1;
-            opacity: 0.06;
-        }
-
-        .hero-ornament img {
-            height: 350px;
-            width: auto;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 80px 60px;
-            max-width: 1200px;
+            padding: 60px;
+            max-width: 1100px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 169, 97, 0.15);
+            border: 1px solid rgba(201, 169, 97, 0.3);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: var(--gold-dark);
+            margin-bottom: 32px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
         }
 
         .title-main {
-            font-family: 'Amiri', 'IBM Plex Sans Arabic', serif;
-            font-size: clamp(4rem, 8vw, 8rem);
+            font-family: 'Amiri', serif;
+            font-size: clamp(4.5rem, 9vw, 9rem);
             font-weight: 700;
             color: var(--heritage-brown);
-            margin-bottom: 48px;
-            line-height: 1.1;
+            margin-bottom: 20px;
+            line-height: 1.05;
             letter-spacing: -0.02em;
-            text-shadow: 2px 4px 16px rgba(93, 78, 61, 0.15);
+            text-shadow: 2px 4px 20px rgba(93, 78, 61, 0.12);
         }
 
         .subtitle {
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            color: var(--desert-gold);
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-shadow: 1px 2px 8px rgba(201, 169, 97, 0.2);
+        }
+
+        .hero-description {
+            font-size: clamp(1.15rem, 2vw, 1.4rem);
             color: var(--text-light);
             font-weight: 400;
-            line-height: 1.75;
-            margin-bottom: 60px;
-            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 48px;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .ornamental-line {
-            width: 120px;
+            width: 140px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--desert-gold), transparent);
-            margin: 0 auto 60px;
+            margin: 40px auto;
         }
 
-        .cta-button {
+        /* Story Section */
+        .section {
+            padding: 140px 60px;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
             display: inline-block;
-            background: var(--heritage-brown);
-            color: var(--sand-light);
-            padding: 20px 56px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.03em;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(201, 169, 97, 0.3);
-            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--desert-gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 16px;
         }
 
-        .cta-button:hover {
+        .section-title {
+            font-family: 'Amiri', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            color: var(--heritage-brown);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .story-text {
+            font-size: 1.25rem;
+            line-height: 2.1;
+            color: var(--text-primary);
+        }
+
+        .story-text p {
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        .story-text p:first-of-type::first-letter {
+            font-family: 'Amiri', serif;
+            font-size: 4rem;
+            line-height: 1;
+            float: right;
+            margin-left: 16px;
+            margin-top: 8px;
+            color: var(--desert-gold);
+            font-weight: 700;
+        }
+
+        .story-highlight {
+            background: rgba(201, 169, 97, 0.08);
+            border-right: 3px solid var(--desert-gold);
+            padding: 32px 40px;
+            margin: 40px 0;
+            border-radius: 4px;
+        }
+
+        .story-highlight p {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            color: var(--heritage-brown);
+            font-weight: 600;
+            line-height: 1.9;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(45, 36, 24, 0.15);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .story-image:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: linear-gradient(180deg, var(--sand-warm) 0%, var(--sand-dark) 100%);
+            padding: 140px 60px;
+            position: relative;
+        }
+
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.3), transparent);
+        }
+
+        .gallery-container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 12px 48px rgba(45, 36, 24, 0.15);
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 64px rgba(45, 36, 24, 0.25);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .gallery-item:not(.large) img {
+            height: 450px;
+        }
+
+        .gallery-item.large img {
+            height: 550px;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(61, 51, 39, 0.92) 0%, transparent 70%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--desert-gold);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .gallery-desc {
+            color: var(--sand-light);
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        /* Heritage Section */
+        .heritage-section {
             background: var(--deep-earth);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(61, 51, 39, 0.25);
+            padding: 140px 60px;
+            position: relative;
+        }
+
+        .heritage-section .section-title,
+        .heritage-section .section-label {
+            color: var(--sand-light);
+        }
+
+        .heritage-section .section-subtitle {
+            color: rgba(247, 242, 237, 0.75);
+        }
+
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            margin-top: 80px;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .heritage-card {
+            background: rgba(247, 242, 237, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            padding: 48px 40px;
+            border-radius: 6px;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .heritage-card:hover {
+            background: rgba(247, 242, 237, 0.08);
+            transform: translateY(-12px);
+            border-color: rgba(201, 169, 97, 0.4);
+        }
+
+        .heritage-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--desert-gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 3rem;
+            box-shadow: 0 8px 24px rgba(201, 169, 97, 0.3);
+        }
+
+        .heritage-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.9rem;
+            color: var(--desert-gold);
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .heritage-desc {
+            font-size: 1.15rem;
+            color: rgba(247, 242, 237, 0.8);
+            line-height: 1.9;
+        }
+
+        /* Supervisor Section */
+        .supervisor-section {
+            padding: 140px 60px;
+            background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand-warm) 50%, var(--sand-light) 100%);
+            position: relative;
+        }
+
+        .supervisor-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .supervisor-image-wrapper {
+            position: relative;
+        }
+
+        .supervisor-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--desert-gold);
+            border-radius: 6px;
+            z-index: -1;
+        }
+
+        .supervisor-image {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(45, 36, 24, 0.2);
+        }
+
+        .supervisor-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .supervisor-text h3 {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            color: var(--heritage-brown);
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        .supervisor-text .supervisor-role {
+            font-size: 1.3rem;
+            color: var(--desert-gold);
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        .supervisor-text p {
+            font-size: 1.25rem;
+            line-height: 2.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            text-align: justify;
         }
 
         /* Footer */
         .footer {
             background: var(--deep-earth);
             color: rgba(247, 242, 237, 0.9);
-            padding: 60px;
-            text-align: center;
+            padding: 100px 60px 60px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.4), transparent);
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
         .footer-logo {
-            height: 60px;
+            height: 70px;
             width: auto;
-            margin-bottom: 32px;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
-        .footer p {
+        .footer-brand-text h4 {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            color: var(--desert-gold);
+            margin-bottom: 6px;
+        }
+
+        .footer-brand-text p {
+            font-size: 0.95rem;
+            color: rgba(247, 242, 237, 0.7);
+        }
+
+        .footer-desc {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: rgba(247, 242, 237, 0.75);
+        }
+
+        .footer-section h4 {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            color: var(--desert-gold);
+            margin-bottom: 28px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .footer-links a {
+            color: rgba(247, 242, 237, 0.75);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--desert-gold);
+            transform: translateX(-4px);
+        }
+
+        .footer-bottom {
+            padding-top: 50px;
+            border-top: 1px solid rgba(201, 169, 97, 0.25);
+            text-align: center;
+            color: rgba(247, 242, 237, 0.6);
             font-size: 1rem;
-            font-weight: 400;
-            margin: 0;
-            letter-spacing: 0.02em;
-            line-height: 1.6;
-        }
-
-        .footer-divider {
-            width: 100px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.4), transparent);
-            margin: 24px auto;
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .title-main {
-                font-size: clamp(3.5rem, 7vw, 6.5rem);
+        @media (max-width: 1400px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
             }
 
-            .hero::before {
-                background: radial-gradient(
-                    ellipse at center,
-                    rgba(247, 242, 237, 0.82),
-                    rgba(232, 221, 208, 0.88),
-                    rgba(201, 169, 97, 0.6)
-                );
+            .supervisor-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .supervisor-image-wrapper::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .heritage-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
             }
         }
 
         @media (max-width: 768px) {
             .header-inner {
-                padding: 20px 30px;
+                padding: 18px 30px;
+            }
+
+            .nav-links {
+                display: none;
             }
 
             .logo {
-                height: 64px;
+                height: 60px;
+            }
+
+            .brand-name {
+                font-size: 1.2rem;
+            }
+
+            .brand-tagline {
+                font-size: 0.8rem;
             }
 
             .hero {
-                margin-top: 105px;
+                margin-top: 95px;
                 background-attachment: scroll;
             }
 
-            .hero::after {
-                filter: saturate(0.6) contrast(0.85) blur(1px);
-            }
-
-            .hero::before {
-                background: radial-gradient(
-                    ellipse at center,
-                    rgba(247, 242, 237, 0.9),
-                    rgba(232, 221, 208, 0.92)
-                );
-            }
-
-            .hero-content {
-                padding: 60px 30px;
-            }
-
-            .hero-ornament {
-                bottom: 60px;
-                left: 30px;
-                opacity: 0.04;
-            }
-
-            .hero-ornament img {
-                height: 220px;
-            }
-
-            .title-main {
-                font-size: clamp(2.8rem, 9vw, 4.5rem);
-                margin-bottom: 36px;
-            }
-
-            .subtitle {
-                font-size: clamp(1.15rem, 4.5vw, 1.5rem);
-                margin-bottom: 48px;
-            }
-
-            .ornamental-line {
-                width: 80px;
-                margin-bottom: 48px;
-            }
-
-            .cta-button {
-                padding: 18px 48px;
-                font-size: 1rem;
+            .section,
+            .gallery-section,
+            .heritage-section,
+            .supervisor-section {
+                padding: 100px 30px;
             }
 
             .footer {
-                padding: 50px 30px;
+                padding: 80px 30px 50px;
             }
 
-            .footer-logo {
-                height: 52px;
+            .story-text {
+                font-size: 1.15rem;
             }
 
-            .footer p {
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                height: 56px;
-            }
-
-            .title-main {
-                font-size: clamp(2.4rem, 10vw, 3.5rem);
-            }
-
-            .subtitle {
-                font-size: clamp(1.05rem, 5vw, 1.3rem);
-            }
-
-            .cta-button {
-                padding: 16px 40px;
-                font-size: 0.95rem;
+            .gallery-item:not(.large) img,
+            .gallery-item.large img {
+                height: 350px;
             }
         }
 
         /* Animations */
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -330,59 +774,325 @@
             }
         }
 
-        .hero-content > * {
-            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .fade-in {
             opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .title-main {
-            animation: fadeInScale 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.2s;
+        .hero-badge { animation-delay: 0.1s; }
+        .title-main { animation: fadeInScale 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; opacity: 0; }
+        .subtitle { animation-delay: 0.4s; }
+        .ornamental-line { animation-delay: 0.5s; }
+        .hero-description { animation-delay: 0.6s; }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .subtitle {
-            animation-delay: 0.5s;
-        }
-
-        .ornamental-line {
-            animation-delay: 0.7s;
-        }
-
-        .cta-button {
-            animation-delay: 0.9s;
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="header-inner">
-            <img src="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png" alt="منقية سمارات" class="logo">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png" alt="منقية سمارات" class="logo">
+                <div class="brand-text">
+                    <div class="brand-name">منقية سمارات</div>
+                    <div class="brand-tagline">الإبل الشعلاء</div>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#story">قصتنا</a></li>
+                    <li><a href="#gallery">المعرض</a></li>
+                    <li><a href="#heritage">التراث</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <!-- Hero -->
-    <section class="hero">
-        <div class="hero-ornament">
-            <img src="https://i.ibb.co/GQxzBBGv/bg.jpg" alt="زخرفة">
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge fade-in">بإشراف حامد بن سعود</div>
+            <h1 class="title-main">شعل</h1>
+            <div class="ornamental-line fade-in"></div>
+            <h2 class="subtitle fade-in">الإبل الشعلاء</h2>
+            <p class="hero-description fade-in">
+                منصة توثيقية تجمع تاريخ ومشاركات منقية سمارات في عالم الإبل العربية الأصيلة، حيث تلتقي الأصالة بالتميز والتراث بالعراقة
+            </p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section" id="story">
+        <div class="section-header scroll-fade">
+            <span class="section-label">من نحن</span>
+            <h2 class="section-title">قصة عريقة في صحراء الجزيرة</h2>
+            <p class="section-subtitle">إرث أصيل ينتقل عبر الأجيال، محافظاً على تراث الآباء والأجداد</p>
         </div>
 
-        <div class="hero-content">
-            <h1 class="title-main">منقية سمارات</h1>
-            
-            <div class="ornamental-line"></div>
-            
-            <p class="subtitle">بإشراف حامد بن سعود<br>منصة توثيقية تجمع تاريخ ومشاركات منقية سمارات</p>
-            
-            <a href="#" class="cta-button">قريبًا</a>
+        <div class="story-grid">
+            <div class="story-text scroll-fade">
+                <p>
+                    في قلب الصحراء العربية، حيث تمتد الرمال الذهبية إلى ما لا نهاية، تنبض منقية سمارات بقصة عريقة من الأصالة والتميز. هنا، في هذا المكان الذي شهد عبور قوافل الأجداد، نحافظ على إرث ثمين من تربية الإبل الأصيلة.
+                </p>
+
+                <div class="story-highlight">
+                    <p>"الشعل" لقب يحمل في طياته معاني القوة والأصالة، حيث تتميز إبلنا بجمالها الفريد وسلالتها النادرة</p>
+                </div>
+
+                <p>
+                    تحت إشراف حامد بن سعود، نواصل مسيرة الأجداد في الحفاظ على أنقى السلالات العربية وأجودها. كل إبل في منقيتنا تحمل قصة من التفاني والعناية، وكل مشاركة في المهرجانات تعكس التزامنا بالتميز والأصالة.
+                </p>
+
+                <p>
+                    من رمال الصحراء إلى ساحات المجد، تواصل "الإبل الشعلاء" كتابة فصول جديدة من النجاح، حاملة معها تراثاً عريقاً وطموحاً لا يتوقف نحو القمة.
+                </p>
+            </div>
+
+            <div class="story-image scroll-fade">
+                <img src="https://kacf.camelclub.gov.sa/Content/UnifiedTemplate/img/new-bg.jpg" alt="تراث الإبل الأصيلة">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="gallery-container">
+            <div class="section-header scroll-fade">
+                <span class="section-label">معرض الصور</span>
+                <h2 class="section-title">لحظات من التميز والمجد</h2>
+                <p class="section-subtitle">رحلة موثقة في عالم الإبل الأصيلة، من الصحراء إلى منصات التتويج</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item large scroll-fade">
+                    <img src="https://kacf.camelclub.gov.sa/Content/UnifiedTemplate/img/new-bg.jpg" alt="مهرجان الملك عبدالعزيز للإبل">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">مهرجان الملك عبدالعزيز للإبل</h3>
+                        <p class="gallery-desc">مشاركة متميزة في أكبر تجمع للإبل على مستوى العالم</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item scroll-fade">
+                    <img src="https://i.ibb.co/tTwRT0X5/IMG-6527.jpg" alt="الإبل في موطنها الطبيعي">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">جمال الصحراء</h3>
+                        <p class="gallery-desc">الإبل الشعلاء في موطنها الطبيعي بين الرمال الذهبية</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item scroll-fade">
+                    <img src="https://i.ibb.co/qMzt79mr/IMG-6525.jpg" alt="سلالات نادرة">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">سلالات أصيلة</h3>
+                        <p class="gallery-desc"> اجود السلالات العربية النادرة</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item scroll-fade">
+                    <img src="https://i.ibb.co/fd8mmsTs/IMG-6523.jpg" alt="تراث وفخر">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">تراث وفخر</h3>
+                        <p class="gallery-desc">احتفاءً بالموروث العربي الأصيل</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item scroll-fade">
+                    <img src="https://i.ibb.co/WWfzgbGH/IMG-6526.jpg" alt="السباقات التراثية">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">المركز الاول</h3>
+                        <p class="gallery-desc">لحظات من الفرحه على أرض الميدان</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section class="heritage-section" id="heritage">
+        <div class="section-header scroll-fade">
+            <span class="section-label">ما يميزنا</span>
+            <h2 class="section-title">التراث والأصالة</h2>
+            <p class="section-subtitle">قيم راسخة وإرث عريق نحافظ عليه جيلاً بعد جيل</p>
+        </div>
+
+        <div class="heritage-grid">
+            <div class="heritage-card scroll-fade">
+                <div class="heritage-icon">🏆</div>
+                <h3 class="heritage-title">سجل حافل بالإنجازات</h3>
+                <p class="heritage-desc">
+                    مشاركات متميزة وجوائز مرموقة في أهم المهرجانات والمسابقات الوطنية
+                </p>
+            </div>
+
+            <div class="heritage-card scroll-fade">
+                <div class="heritage-icon">🐪</div>
+                <h3 class="heritage-title">سلالات نقية أصيلة</h3>
+                <p class="heritage-desc">
+                    نربي ونطور أنقى السلالات العربية مع الحفاظ على الأصالة والنسب الموثق
+                </p>
+            </div>
+
+            <div class="heritage-card scroll-fade">
+                <div class="heritage-icon">⭐</div>
+                <h3 class="heritage-title">عناية استثنائية</h3>
+                <p class="heritage-desc">
+                    رعاية متكاملة وفق أحدث الأساليب مع احترام التقاليد الموروثة
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supervisor Section -->
+    <section class="supervisor-section">
+        <div class="supervisor-content">
+            <div class="supervisor-image-wrapper scroll-fade">
+                <div class="supervisor-image">
+                    <img src="https://i.ibb.co/9mGpVvVN/IMG-6522.png" alt="حامد بن سعود">
+                </div>
+            </div>
+
+            <div class="supervisor-text scroll-fade">
+                <h3>بإشراف حامد بن سعود</h3>
+                <p class="supervisor-role">راعي المنقية والمشرف على شؤونها</p>
+                
+                <p>
+                    تحت القيادة الحكيمة والإشراف المباشر لحامد بن سعود، تواصل منقية سمارات مسيرتها المتميزة في عالم الإبل العربية الأصيلة. برؤية ثاقبة وخبرة عميقة في هذا المجال، يحرص على تطبيق أرقى المعايير في العناية والتربية.
+                </p>
+
+                <p>
+                    يجمع بين احترام التقاليد الموروثة والأساليب الحديثة، مما جعل من "الإبل الشعلاء" علامة تميز في المهرجانات والمحافل الوطنية. شغفه بالتراث وحرصه على الأصالة ينعكس في كل تفصيل من تفاصيل المنقية.
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <img src="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png" alt="منقية سمارات" class="footer-logo">
-        <div class="footer-divider"></div>
-        <p>© 2025 منقية سمارات - حامد بن سعود<br>جميع الحقوق محفوظة</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <img src="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png" alt="منقية سمارات" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h4>منقية سمارات</h4>
+                        <p>الإبل الشعلاء</p>
+                    </div>
+                </div>
+                <p class="footer-desc">
+                    منصة توثيقية تجمع تاريخ ومشاركات منقية سمارات في عالم الإبل العربية الأصيلة، بإشراف حامد بن سعود
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4>روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#story">قصتنا</a></li>
+                    <li><a href="#gallery">المعرض</a></li>
+                    <li><a href="#heritage">التراث</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>تواصل معنا</h4>
+                <ul class="footer-links">
+                    <li><a href="#">تويتر</a></li>
+                    <li><a href="#">إنستغرام</a></li>
+                    <li><a href="#">سناب شات</a></li>
+                    <li><a href="#">واتساب</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 منقية سمارات - الإبل الشعلاء | بإشراف حامد بن سعود | جميع الحقوق محفوظة</p>
+        </div>
     </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 110;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-fade elements
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add stagger effect for gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item.scroll-fade');
+        galleryItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Add stagger effect for heritage cards
+        const heritageCards = document.querySelectorAll('.heritage-card.scroll-fade');
+        heritageCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
+        });
+    </script>
 </body>
 </html>
