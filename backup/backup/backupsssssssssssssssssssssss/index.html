@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منقية سمارات</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sand-light: #f7f2ed;
+            --sand-warm: #e8ddd0;
+            --desert-gold: #c9a961;
+            --heritage-brown: #5d4e3d;
+            --deep-earth: #3d3327;
+            --text-primary: #2d2418;
+            --text-light: #6b5d4f;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background: var(--sand-light);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(247, 242, 237, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            height: 80px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(45, 36, 24, 0.1));
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://i.ibb.co/GQxzBBGv/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 128px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://i.ibb.co/GQxzBBGv/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: saturate(0.7) contrast(0.9);
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(247, 242, 237, 0.75),
+                rgba(232, 221, 208, 0.85),
+                rgba(201, 169, 97, 0.5)
+            );
+            z-index: 1;
+        }
+
+        .hero-ornament {
+            position: absolute;
+            bottom: 100px;
+            left: 100px;
+            z-index: 1;
+            opacity: 0.06;
+        }
+
+        .hero-ornament img {
+            height: 350px;
+            width: auto;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 80px 60px;
+            max-width: 1200px;
+        }
+
+        .title-main {
+            font-family: 'Amiri', 'IBM Plex Sans Arabic', serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 700;
+            color: var(--heritage-brown);
+            margin-bottom: 48px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 4px 16px rgba(93, 78, 61, 0.15);
+        }
+
+        .subtitle {
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            color: var(--text-light);
+            font-weight: 400;
+            line-height: 1.75;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ornamental-line {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--desert-gold), transparent);
+            margin: 0 auto 60px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--heritage-brown);
+            color: var(--sand-light);
+            padding: 20px 56px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(201, 169, 97, 0.3);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--deep-earth);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(61, 51, 39, 0.25);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-earth);
+            color: rgba(247, 242, 237, 0.9);
+            padding: 60px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 60px;
+            width: auto;
+            margin-bottom: 32px;
+            opacity: 0.85;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            font-weight: 400;
+            margin: 0;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.4), transparent);
+            margin: 24px auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .title-main {
+                font-size: clamp(3.5rem, 7vw, 6.5rem);
+            }
+
+            .hero::before {
+                background: radial-gradient(
+                    ellipse at center,
+                    rgba(247, 242, 237, 0.82),
+                    rgba(232, 221, 208, 0.88),
+                    rgba(201, 169, 97, 0.6)
+                );
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 20px 30px;
+            }
+
+            .logo {
+                height: 64px;
+            }
+
+            .hero {
+                margin-top: 105px;
+                background-attachment: scroll;
+            }
+
+            .hero::after {
+                filter: saturate(0.6) contrast(0.85) blur(1px);
+            }
+
+            .hero::before {
+                background: radial-gradient(
+                    ellipse at center,
+                    rgba(247, 242, 237, 0.9),
+                    rgba(232, 221, 208, 0.92)
+                );
+            }
+
+            .hero-content {
+                padding: 60px 30px;
+            }
+
+            .hero-ornament {
+                bottom: 60px;
+                left: 30px;
+                opacity: 0.04;
+            }
+
+            .hero-ornament img {
+                height: 220px;
+            }
+
+            .title-main {
+                font-size: clamp(2.8rem, 9vw, 4.5rem);
+                margin-bottom: 36px;
+            }
+
+            .subtitle {
+                font-size: clamp(1.15rem, 4.5vw, 1.5rem);
+                margin-bottom: 48px;
+            }
+
+            .ornamental-line {
+                width: 80px;
+                margin-bottom: 48px;
+            }
+
+            .cta-button {
+                padding: 18px 48px;
+                font-size: 1rem;
+            }
+
+            .footer {
+                padding: 50px 30px;
+            }
+
+            .footer-logo {
+                height: 52px;
+            }
+
+            .footer p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                height: 56px;
+            }
+
+            .title-main {
+                font-size: clamp(2.4rem, 10vw, 3.5rem);
+            }
+
+            .subtitle {
+                font-size: clamp(1.05rem, 5vw, 1.3rem);
+            }
+
+            .cta-button {
+                padding: 16px 40px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .title-main {
+            animation: fadeInScale 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .subtitle {
+            animation-delay: 0.5s;
+        }
+
+        .ornamental-line {
+            animation-delay: 0.7s;
+        }
+
+        .cta-button {
+            animation-delay: 0.9s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <img src="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png" alt="منقية سمارات" class="logo">
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-ornament">
+            <img src="https://i.ibb.co/GQxzBBGv/bg.jpg" alt="زخرفة">
+        </div>
+
+        <div class="hero-content">
+            <h1 class="title-main">منقية سمارات</h1>
+            
+            <div class="ornamental-line"></div>
+            
+            <p class="subtitle">بإشراف حامد بن سعود<br>منصة توثيقية تجمع تاريخ ومشاركات منقية سمارات</p>
+            
+            <a href="#" class="cta-button">قريبًا</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="https://i.ibb.co/bM2ZtdF1/Nj0-U6b-Tk-400x400-modified.png" alt="منقية سمارات" class="footer-logo">
+        <div class="footer-divider"></div>
+        <p>© 2025 منقية سمارات - حامد بن سعود<br>جميع الحقوق محفوظة</p>
+    </footer>
+</body>
+</html>
